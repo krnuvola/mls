@@ -1,0 +1,34 @@
+# CUDA example binaries are built next to their sources (no extension)
+cuda-tutorial/*/*
+!cuda-tutorial/*/*.cu
+!cuda-tutorial/*/*.h
+!cuda-tutorial/*/*.md
+!cuda-tutorial/*/*.sbatch
+*.o
+
+# hw1-asr: per-GPU builds, and the instructors' solution (never commit it)
+hw1-asr/build/
+hw1-asr/_solution/
+
+# Slurm output
+*.out
+
+# Python
+__pycache__/
+*.pyc
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,48 @@
+\subsection{ASR Experimental Methodology}
+\label{sec:asr_methodology}
+
+\paragraph{Hardware and software.}
+Experiments were conducted on an NVIDIA H200 MIG
+\texttt{1g.18gb} GPU partition with 16 streaming multiprocessors
+and compute capability 9.0 (\texttt{sm\_90}). The final matched
+end-to-end comparisons used PyTorch 2.10.0 (CUDA 12.8 build) with CUDA 13.2.
+The custom CUDA library was compiled for \texttt{sm\_90}.
+
+\paragraph{Kernel-level evaluation.}
+We evaluated GEMM tile sizes $T\in\{8,16,32\}$ using the
+supplied Task 3 benchmark. Each configuration was checked
+against the reference implementation. We compared latency
+and achieved floating-point throughput against the supplied
+naive GEMM and cuBLAS baselines across encoder, decoder,
+and language-model-head matrix shapes.
+
+\paragraph{End-to-end evaluation.}
+The ASR benchmark processed the same 3.50-second audio
+sample, represented by mel features of shape
+$(1,128,3000)$, with a 59-token prompt and 13 generated
+tokens. Each timed configuration used one warm-up run
+followed by three measured runs. We report mean
+transcription latency, peak GPU memory, and the
+supplied transcription correctness check.
+
+Four configurations were compared: (i) PyTorch-only
+operations; (ii) all supported custom CUDA kernels;
+(iii) custom CUDA except GEMM, which used PyTorch;
+and (iv) custom CUDA except GEMM and attention,
+which both used PyTorch. All matched end-to-end
+measurements used the same GPU and software environment.
+
+\paragraph{Profiling and interpretation.}
+Operation-level profiling was performed separately for
+the fully custom and fastest hybrid configurations.
+We report operation call counts and cumulative measured
+GPU time. Profiling results are used to identify
+bottlenecks, while controlled kernel substitutions
+provide stronger evidence about the effect of
+implementation choices on end-to-end latency.
+
+The correctness check covers one supplied transcription
+sample and is not a corpus-level word error rate.
+Similarly, the reported latency results characterise
+the tested hardware, model and workload rather than
+all possible ASR inference settings.

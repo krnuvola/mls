@@ -1,0 +1,73 @@
+\subsection{CUDA Implementation}
+\label{sec:cuda_implementation}
+
+The supplied ASR pipeline provides CUDA implementations for rotary
+positional embeddings, reductions, general matrix multiplication
+(GEMM), attention, and auxiliary operations. We completed the
+required kernels and investigated the performance of the GEMM
+implementation in particular.
+
+\paragraph{Tiled matrix multiplication.}
+For an input matrix $X\in\mathbb{R}^{M\times K}$ and weights
+$W\in\mathbb{R}^{N\times K}$, a linear layer computes
+\begin{equation}
+Y_{m,n} =
+f\left(\sum_{k=0}^{K-1}X_{m,k}W_{n,k}+b_n\right),
+\end{equation}
+where $f$ is the identity or GELU activation. The weight layout
+matches PyTorch's convention of one row per output feature.
+
+Our GEMM kernel assigns one output element to each thread in a
+$T\times T$ thread block, with $T=16$ in the final implementation.
+Each block processes the reduction dimension in tiles of width $T$.
+Input and weight tiles are loaded into shared memory and reused
+across the block. The weight tile uses a padded shared-memory
+layout of $T\times(T+1)$ elements to mitigate bank conflicts.
+
+For $M=N=K=1024$, a naive implementation performing independent
+dot products requests $2MNK=2{,}147{,}483{,}648$ operand loads.
+With ideal tile reuse, the tiled implementation requests approximately
+$2MNK/T=134{,}217{,}728$ loads for $T=16$, a theoretical
+sixteenfold reduction. This counts load requests rather than
+measured device-memory traffic; caching and hardware effects
+can change actual memory transfers.
+
+Out-of-bounds tile elements are replaced with zeros. All threads,
+including those without a valid output element, participate in
+both synchronization barriers: the first ensures that shared-memory
+loads finish before computation, and the second prevents the next
+tile from overwriting values still in use.
+
+\paragraph{Fused epilogue.}
+The accumulated output remains in a register while optional bias
+addition and GELU are applied, avoiding an additional activation
+kernel. For encoder \texttt{fc1}, with output dimensions
+$1500\times5120$, eliminating a separate FP32 read and write
+saves $2(1500)(5120)(4)=61{,}440{,}000$ bytes of global-memory
+traffic, excluding cache effects and launch overhead.
+
+
+\paragraph{Attention and online softmax.}
+Our attention kernel processes 32 keys per tile,
+with four warps per block and one query per warp.
+Keys and values are staged in shared memory while
+each query maintains a running maximum, normaliser,
+and weighted output accumulator. This follows the
+online-softmax principle underlying FlashAttention
+\citep{dao2022flashattention}, avoiding materialisation
+of the full attention-score matrix. The kernel supports
+grouped-query attention by mapping query heads to
+shared key/value heads and applies causal masking
+where required. Unlike production FlashAttention
+kernels, it uses per-lane scalar dot products rather
+than optimised matrix operations, limiting throughput
+despite reduced intermediate storage.
+
+\paragraph{Kernel selection.}
+The tiled kernel is compared against a naive implementation and
+NVIDIA cuBLAS. cuBLAS can exploit more advanced tiling, instruction
+selection, and hardware-specific optimisations than this
+straightforward shared-memory kernel. We additionally compare
+tile sizes $T\in\{8,16,32\}$ and evaluate end-to-end configurations
+that selectively replace custom CUDA operations with PyTorch
+implementations.

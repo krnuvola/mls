@@ -1,0 +1,85 @@
+{
+  "description": "Exploratory AI-assisted qualitative audit",
+  "sampling": "Eight selected queries, including anomalous cases; not a representative random sample",
+  "annotation": "AI-proposed scores reviewed by the coursework author; not independent blinded human annotation",
+  "num_queries": 8,
+  "num_answers": 32,
+  "score_range": [
+    0,
+    4
+  ],
+  "by_context": {
+    "3": {
+      "count": 8,
+      "manual_means": {
+        "correctness": 2.625,
+        "grounding": 2.875,
+        "usefulness": 2.375
+      },
+      "manual_overall_mean": 2.625,
+      "gpt41_judge_mean": 0.53125
+    },
+    "5": {
+      "count": 8,
+      "manual_means": {
+        "correctness": 2.75,
+        "grounding": 3.0,
+        "usefulness": 2.625
+      },
+      "manual_overall_mean": 2.7916666666666665,
+      "gpt41_judge_mean": 0.4583333333333333
+    },
+    "10": {
+      "count": 8,
+      "manual_means": {
+        "correctness": 2.625,
+        "grounding": 2.5,
+        "usefulness": 2.5
+      },
+      "manual_overall_mean": 2.5416666666666665,
+      "gpt41_judge_mean": 0.6666666666666666
+    },
+    "20": {
+      "count": 8,
+      "manual_means": {
+        "correctness": 2.75,
+        "grounding": 2.75,
+        "usefulness": 2.75
+      },
+      "manual_overall_mean": 2.75,
+      "gpt41_judge_mean": 0.65625
+    }
+  },
+  "paired_usefulness": {
+    "N5_minus_N3": {
+      "mean_difference": 0.25,
+      "better": 3,
+      "worse": 1,
+      "tied": 4
+    },
+    "N10_minus_N3": {
+      "mean_difference": 0.125,
+      "better": 3,
+      "worse": 1,
+      "tied": 4
+    },
+    "N20_minus_N3": {
+      "mean_difference": 0.375,
+      "better": 3,
+      "worse": 1,
+      "tied": 4
+    },
+    "N10_minus_N5": {
+      "mean_difference": -0.125,
+      "better": 1,
+      "worse": 1,
+      "tied": 6
+    },
+    "N20_minus_N10": {
+      "mean_difference": 0.25,
+      "better": 2,
+      "worse": 1,
+      "tied": 5
+    }
+  }
+}

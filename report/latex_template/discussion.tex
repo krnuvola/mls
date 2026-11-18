@@ -1,0 +1,54 @@
+The ASR and RAG experiments expose a common systems
+trade-off: increasing computational work or resource
+use does not necessarily improve the desired outcome.
+For ASR, the custom CUDA implementation passed
+correctness tests but was substantially slower than
+the PyTorch baseline. Controlled substitutions and
+profiling identified GEMM as the dominant bottleneck.
+The tile-size experiments further showed that a
+single kernel configuration is poorly suited to
+both large encoder matrices and the one-row
+\texttt{lm\_head} workload.
+
+For RAG, increasing generation context from five
+to twenty documents raised prompt-token usage
+by approximately 4.1 times without an established
+improvement in judged answer quality. Although
+ten documents achieved the highest observed
+fixed-context mean, paired confidence intervals
+included zero for comparisons against five and
+twenty documents. Thus, the study does not
+establish an optimal fixed context size.
+Adaptive similarity-gap policies increased
+context precision but did not demonstrate
+higher judged answer quality. The substantially
+higher oracle score suggests that access to
+relevant evidence is an important limitation,
+although generation and judging errors may
+also contribute.
+
+These conclusions are bounded by the experimental
+settings. ASR timings used a single input on an
+H200 MIG partition, with limited repeated runs;
+the hybrid's small measured advantage over
+PyTorch requires replication. The RAG study
+used 125 development queries, one generation
+per query--condition pair and an automated
+judge. Small quality differences remain
+sensitive to judge variability, and the
+single-worker latency comparison covered
+only 20 queries. The RTX 2080 Ti experiments
+conducted separately are not directly
+comparable to H200 MIG timings.
+
+Future work would use shape-specialised GEMM
+kernels, improved attention tiling and broader
+ASR workload testing. For RAG, stronger
+retrieval and evidence selection, repeated
+generations, independent human assessment
+and evaluation on a held-out query set would
+provide stronger evidence of quality--cost
+trade-offs. Overall, the results favour
+workload-specific optimisation and controlled
+end-to-end measurement over isolated kernel
+speed or context-size increases.

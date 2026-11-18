@@ -1,0 +1,73 @@
+\section{Mandatory ASR Task Questions}
+\label{app:asr_questions}
+
+\paragraph{Task 1, Question 1: RoPE memory traffic.}
+For the audio encoder case, the query and key tensors
+contain $1500\times20\times64$ FP32 elements each.
+With rotary dimension 32, the kernel rotates
+$1500\times20\times16$ pairs in each tensor.
+Each pair requires two float reads and two float
+writes, giving
+\[
+2\times1500\times20\times16\times4\times4
+=15{,}360{,}000\text{ bytes}.
+\]
+The partner's RTX 2080 Ti experiment measured
+approximately 499.7~GB/s against a stated peak
+of 616~GB/s, or approximately 81\% of peak
+bandwidth. This calculation excludes small
+frequency-table accesses and other overheads.
+
+\paragraph{Task 2, Question 2: Stable softmax.}
+In FP32, $\exp(100)$ exceeds the largest
+representable finite value and overflows to
+infinity. Directly computing softmax may
+therefore produce undefined ratios such as
+$\infty/\infty$.
+Let $m=\max_j x_j$. Then
+\[
+\frac{\exp(x_i-m)}{\sum_j\exp(x_j-m)}
+=
+\frac{\exp(x_i)\exp(-m)}
+{\sum_j\exp(x_j)\exp(-m)}
+=
+\frac{\exp(x_i)}{\sum_j\exp(x_j)}.
+\]
+Thus subtracting the maximum preserves the
+mathematical result while ensuring every
+exponential argument is non-positive.
+The supplied large-input stability test passed.
+
+\paragraph{Task 3, Question 3: Fused GELU traffic.}
+For encoder \texttt{fc1}, the output contains
+$1500\times5120$ FP32 elements. Applying GELU
+in a separate kernel requires reading and
+writing this output, transferring
+\[
+2\times1500\times5120\times4
+=61{,}440{,}000\text{ bytes}.
+\]
+Fusing GELU into the GEMM epilogue avoids this
+additional global-memory traffic and a separate
+kernel launch, excluding cache effects.
+
+\paragraph{Task 4, Question 1: Attention storage.}
+A full FP32 encoder attention score matrix
+with 20 heads and 1500 tokens occupies
+\[
+20\times1500^2\times4
+=180{,}000{,}000\text{ bytes}
+\approx171.7\text{ MiB}.
+\]
+Our attention kernel uses a key tile of 32,
+head dimension 64, and four query warps.
+Its dynamic shared-memory allocation is
+\[
+4[32(64+1)+32(64)+4(64)]
+=17{,}536\text{ bytes}
+\approx17.1\text{ KiB per block}.
+\]
+The tiled implementation therefore avoids
+materialising the full attention score matrix.
+This storage comparison does not represent
+the total end-to-end GPU memory reduction.

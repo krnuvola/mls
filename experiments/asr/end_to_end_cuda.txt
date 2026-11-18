@@ -1,0 +1,40 @@
+End-to-End ASR Benchmark — Custom CUDA Kernels
+Date: 2026-11-14
+
+GPU: NVIDIA H200 MIG 1g.18gb (sm_90)
+PyTorch: 2.10.0+cu128
+
+Kernel configuration:
+  RoPE: CUDA
+  Reductions: CUDA
+  GEMM: CUDA
+  Attention: CUDA
+  Provided kernels: CUDA
+
+Model loading time: 159.5 s
+Audio duration: 3.50 s
+Mel features: (1, 128, 3000)
+Prompt length: 59 tokens
+Generated tokens: 13
+
+Inference measurements:
+  Run 1: 5865.1 ms
+  Run 2: 5864.2 ms
+  Run 3: 5864.0 ms
+  Mean: 5864.4 ms
+  Reported variation: +/- 0.5 ms
+  Time per token: 451.1 ms
+
+Peak GPU memory: 8.56 GiB
+
+Transcription:
+  Concord returned to its place amidst the tents.
+
+Expected:
+  Concord returned to its place amidst the tents
+
+Reported accuracy: 100.0%
+Status: PASS
+
+Note: Accuracy is for the supplied benchmark audio only.
+This is not a comparison against the PyTorch baseline.

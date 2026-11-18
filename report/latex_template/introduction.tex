@@ -1,0 +1,49 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Machine learning systems must balance task quality with computational
+efficiency. Improvements at the level of an individual operation do not
+necessarily translate into faster end-to-end execution, while increasing
+the computational resources available to a model does not necessarily
+improve its outputs. Building on Transformer-based ASR \citep{vaswani2017attention,radford2023robust} and retrieval-augmented generation \citep{lewis2020retrieval}, this report investigates these trade-offs through
+two complementary workloads: GPU-accelerated automatic speech
+recognition (ASR) and retrieval-augmented generation (RAG).
+
+For ASR, we implement and evaluate CUDA operations used in the supplied
+inference pipeline, including rotary positional embeddings, reductions,
+matrix multiplication, and attention. We compare custom implementations
+against PyTorch-backed alternatives and investigate the effects of
+matrix-multiplication tile size and kernel selection. Our central
+question is whether custom CUDA kernels improve end-to-end inference
+latency while preserving transcription correctness.
+
+For RAG, we investigate retrieval depth, evidence selection,
+and the relationship between context size, answer quality, and
+inference cost. We evaluate fixed context sizes, adaptive
+similarity-gap policies, and an oracle evidence condition on
+125 development queries. We measure retrieval effectiveness,
+automated answer quality, prompt-token usage, and generation
+latency.
+
+The fully custom CUDA implementation was approximately 4.38 times
+slower than the PyTorch baseline. A hybrid configuration using
+PyTorch GEMM and attention achieved 1296.2 ms, compared with
+1339.2 ms for PyTorch-only execution on the tested workload.
+This small measured difference does not establish a general
+performance advantage. Profiling and controlled substitutions
+identified custom GEMM and attention as the principal bottlenecks.
+
+In the 125-query RAG study, judged answer quality was broadly
+similar across fixed context sizes of 3 to 20 documents.
+Increasing context from 5 to 20 documents raised prompt-token
+usage by approximately 4.1 times without an established quality
+improvement. The higher oracle-evidence score suggests that
+evidence availability is an important limitation, although
+automated judging and single-generation evaluation constrain
+the conclusions.
+
+Together, the experiments illustrate a common systems principle:
+greater implementation complexity or computational expenditure does
+not guarantee better end-to-end outcomes. Effective optimisation
+requires workload-specific measurement, controlled comparisons, and
+explicit consideration of both quality and cost.

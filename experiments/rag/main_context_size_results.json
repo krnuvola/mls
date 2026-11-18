@@ -1,0 +1,61 @@
+{
+  "experiment": "Retrieval depth versus generation context size",
+  "split": "practice",
+  "retrieval_k": 20,
+  "context_sizes": [
+    3,
+    5,
+    10,
+    20
+  ],
+  "sample_size": 30,
+  "sample_seed": 42,
+  "generator": "utter-project/EuroLLM-22B-Instruct-2512",
+  "judge": "gpt-4.1",
+  "judge_repeats": 1,
+  "mean_prompt_tokens": {
+    "3": 708.6,
+    "5": 1310.8,
+    "10": 2497.2,
+    "20": 5024.3
+  },
+  "mean_generation_latency_seconds": {
+    "3": 2.99,
+    "5": 3.85,
+    "10": 4.09,
+    "20": 4.61
+  },
+  "conditions": {
+    "3": {
+      "mean_answer_quality": 0.6472222222222221,
+      "mean_correctness": 2.6,
+      "mean_grounding": 2.566666666666667,
+      "mean_completeness": 2.6
+    },
+    "5": {
+      "mean_answer_quality": 0.6138888888888888,
+      "mean_correctness": 2.466666666666667,
+      "mean_grounding": 2.433333333333333,
+      "mean_completeness": 2.466666666666667
+    },
+    "10": {
+      "mean_answer_quality": 0.6944444444444444,
+      "mean_correctness": 2.8,
+      "mean_grounding": 2.7333333333333334,
+      "mean_completeness": 2.8
+    },
+    "20": {
+      "mean_answer_quality": 0.6416666666666667,
+      "mean_correctness": 2.566666666666667,
+      "mean_grounding": 2.566666666666667,
+      "mean_completeness": 2.566666666666667
+    }
+  },
+  "limitations": [
+    "30-query subset of 350 practice queries",
+    "Single generation and judge evaluation per query and condition",
+    "LLM judge may reward cautious but less informative answers",
+    "Gold evidence may not fully answer every transcript",
+    "Bootstrap comparisons are exploratory and unadjusted for multiplicity"
+  ]
+}

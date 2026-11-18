@@ -1,0 +1,81 @@
+condition,qid,split,n_ctx,ctx_recall,ctx_precision,ctx_chars,prompt_tokens,completion_tokens,usage_source,gen_ms,retr_ms,embed_ms,answer_chars,transcript
+n20,q_7f3179f293749f08,dev,20,1.0,0.05,17939,4329,486,api,8996.106939999663,4.849728000408504,108.17077899992,2089,What are the options for real estate loans used specifically for property repairs?
+n20,q_b1e20f08cf71cb73,dev,20,0.0,0.0,23607,5772,116,api,2639.374153999597,4.468044000532245,124.99026200021035,515,When do index funds start to lose reliability?
+n20,q_01e721befe9d0dd7,dev,20,1.0,0.05,21676,5290,571,api,10487.67546199997,7.892558000094141,112.06990800019412,2620,How can I invest and save for my house down payment simultaneously?
+n20,q_24c587b74c5b7c95,dev,20,0.5,0.05,20268,4958,223,api,4256.567838998308,4.283683998437482,109.91489200023352,815,What are some good passive income options for college students?
+n5,q_b1e20f08cf71cb73,dev,5,0.0,0.0,3169,908,126,api,2199.613306998799,4.468044000532245,124.99026200021035,544,When do index funds start to lose reliability?
+n5,q_f1e3538e7cd880f9,dev,5,0.0,0.0,5892,1508,220,api,3566.3737029990443,8.004703000551672,116.04967699895496,1091,Is it possible to achieve a positive return on an investment with a balance below the cost basis?
+oracle,q_cd9e1110345de425,dev,1,1.0,1.0,1156,341,49,api,1078.3207160002348,7.2796530002960935,114.97640599918668,277,How long does it take to transfer money between two business checking accounts?
+n1,q_f1e3538e7cd880f9,dev,1,0.0,0.0,2935,777,129,api,2315.1565699990897,8.004703000551672,116.04967699895496,690,Is it possible to achieve a positive return on an investment with a balance below the cost basis?
+oracle,q_766585499ae34d13,dev,7,1.0,1.0,4776,1184,513,api,8987.771919999432,6.526316001327359,104.57645600035903,2394,What are the ethical considerations in investment decisions?
+n20,q_33fd7baba78a1358,dev,20,0.5,0.15,14939,3770,376,api,6645.992997000576,5.892356999538606,116.98255300143501,1595,Why might a bank prefer a lower all cash offer over a higher offer through conventional lending?
+oracle,q_759750b5fb0e1764,dev,1,1.0,1.0,123,125,50,api,851.391762998901,7.103656000253977,111.84501400020963,256,How can I avoid paying a maintenance fee when my account balance falls below the minimum requirement?
+n1,q_cd9e1110345de425,dev,1,0.0,0.0,366,173,70,api,1191.344457998639,7.2796530002960935,114.97640599918668,336,How long does it take to transfer money between two business checking accounts?
+n5,q_4649a82e62e04522,dev,5,1.0,0.2,4874,1368,416,api,6885.23921200067,4.534551999313408,113.17839299954358,1647,How are capital gains from selling property outside the US calculated and taxed?
+n5,q_619ce121155f4933,dev,5,0.0,0.0,2884,764,110,api,1891.581342999416,7.670242999665788,110.64511299991864,584,How does the global economy generate a positive return on investment?
+n1,q_33fd7baba78a1358,dev,1,0.16666666666666666,1.0,422,192,92,api,1764.9829879992467,5.892356999538606,116.98255300143501,441,Why might a bank prefer a lower all cash offer over a higher offer through conventional lending?
+n1,q_de2197727d6ce8d1,dev,1,0.0,0.0,1211,398,172,api,2832.2832779995224,7.06103499942401,119.93248900034814,785,Can I claim a tax deduction for working from home as an employee? I work there ninety percent of the time.
+n20,q_83436a5f06f10cb0,dev,20,0.0,0.0,23195,5491,60,api,1848.262405999776,6.8257940001785755,111.2436469993554,298,"What is the typical duration of a bank's ""no your customer"" KYC process?"
+n20,q_77e405127e09b49c,dev,20,0.8,0.2,11552,2951,619,api,10413.115719000416,6.439386999772978,113.38600599992787,2571,What are some alternatives to Intuit's Pay Trust service for online bill viewing and payment?
+oracle,q_ec2bf0997b0ab34b,dev,1,1.0,1.0,1217,395,105,api,1811.51157199929,5.760706000728533,119.96140700102842,506,"For equivalent company securities, is it more advantageous to trade them in a country with dividend tax free status?"
+n1,q_827ed2ddd2313785,dev,1,0.07692307692307693,1.0,298,159,64,api,1054.998171999614,4.955668999173213,112.81318199871748,296,Why does a company's stock price matter to its management team?
+n20,q_2354f69a335b77ad,dev,20,0.25,0.05,9582,2461,415,api,7161.39592699983,6.888411000545602,111.3567399988824,1485,What is the best way for a beginner to learn about finance and economics?
+n1,q_01e721befe9d0dd7,dev,1,1.0,1.0,800,254,141,api,2406.6876269989734,7.892558000094141,112.06990800019412,726,How can I invest and save for my house down payment simultaneously?
+oracle,q_827ed2ddd2313785,dev,10,0.7692307692307693,1.0,8300,1954,547,api,9364.23074800041,4.955668999173213,112.81318199871748,2402,Why does a company's stock price matter to its management team?
+oracle,q_de2197727d6ce8d1,dev,4,1.0,1.0,2407,738,340,api,5873.062933998881,7.06103499942401,119.93248900034814,1552,Can I claim a tax deduction for working from home as an employee? I work there ninety percent of the time.
+n5,q_ec2bf0997b0ab34b,dev,5,1.0,0.2,4861,1296,224,api,3806.9667760009906,5.760706000728533,119.96140700102842,1062,"For equivalent company securities, is it more advantageous to trade them in a country with dividend tax free status?"
+n1,q_2354f69a335b77ad,dev,1,0.0,0.0,821,272,81,api,1314.278170999387,6.888411000545602,111.3567399988824,427,What is the best way for a beginner to learn about finance and economics?
+n1,q_24c587b74c5b7c95,dev,1,0.0,0.0,552,207,41,api,681.9727410002088,4.283683998437482,109.91489200023352,243,What are some good passive income options for college students?
+oracle,q_dc0daa63c6ad372c,dev,5,1.0,1.0,3525,914,108,api,1870.0436839990289,5.0097839994123206,58.35817099978158,496,How can I use Google Finance to find financial data about LinkedIn and its stock?
+n5,q_766585499ae34d13,dev,5,0.2857142857142857,0.4,2576,696,403,api,6562.341417000425,6.526316001327359,104.57645600035903,2097,What are the ethical considerations in investment decisions?
+n1,q_759750b5fb0e1764,dev,1,0.0,0.0,382,172,81,api,1379.216909999741,7.103656000253977,111.84501400020963,426,How can I avoid paying a maintenance fee when my account balance falls below the minimum requirement?
+n20,q_759750b5fb0e1764,dev,20,0.0,0.0,13932,3439,235,api,4390.668190000724,7.103656000253977,111.84501400020963,1056,How can I avoid paying a maintenance fee when my account balance falls below the minimum requirement?
+oracle,q_f1e3538e7cd880f9,dev,1,1.0,1.0,182,161,63,api,1872.0173490000889,8.004703000551672,116.04967699895496,302,Is it possible to achieve a positive return on an investment with a balance below the cost basis?
+n5,q_3576d20498b24f50,dev,5,1.0,0.2,4587,1251,386,api,6410.0254559998575,8.445829000265803,119.65084400071646,1380,"Do I need to pay taxes on self employment income as a minor in the U K, and if so how."
+oracle,q_4649a82e62e04522,dev,1,1.0,1.0,2762,790,153,api,2490.241898000022,4.534551999313408,113.17839299954358,725,How are capital gains from selling property outside the US calculated and taxed?
+n1,q_dc0daa63c6ad372c,dev,1,0.0,0.0,42,102,141,api,2313.3750230008445,5.0097839994123206,58.35817099978158,627,How can I use Google Finance to find financial data about LinkedIn and its stock?
+n1,q_ec2bf0997b0ab34b,dev,1,1.0,1.0,1217,395,105,api,1787.3348190005345,5.760706000728533,119.96140700102842,521,"For equivalent company securities, is it more advantageous to trade them in a country with dividend tax free status?"
+n1,q_7f3179f293749f08,dev,1,0.0,0.0,2076,572,231,api,3758.4844489992975,4.849728000408504,108.17077899992,1008,What are the options for real estate loans used specifically for property repairs?
+oracle,q_7f3179f293749f08,dev,1,1.0,1.0,1265,362,251,api,4127.645604999998,4.849728000408504,108.17077899992,1187,What are the options for real estate loans used specifically for property repairs?
+n5,q_cd9e1110345de425,dev,5,0.0,0.0,2029,570,153,api,2500.8557309993193,7.2796530002960935,114.97640599918668,771,How long does it take to transfer money between two business checking accounts?
+oracle,q_77e405127e09b49c,dev,5,1.0,1.0,4037,1140,336,api,5723.960232999161,6.439386999772978,113.38600599992787,1377,What are some alternatives to Intuit's Pay Trust service for online bill viewing and payment?
+n20,q_cd9e1110345de425,dev,20,1.0,0.05,14969,3590,129,api,2655.2543039997545,7.2796530002960935,114.97640599918668,646,How long does it take to transfer money between two business checking accounts?
+n1,q_d96b734b2bc02b5a,dev,1,0.0,0.0,134,116,59,api,1005.5408040007023,6.559960998856695,107.14420000113023,338,What are some user friendly personal finance software options available in the UK?
+n20,q_dc0daa63c6ad372c,dev,20,0.2,0.05,6513,1801,181,api,3169.158091999634,5.0097839994123206,58.35817099978158,798,How can I use Google Finance to find financial data about LinkedIn and its stock?
+n5,q_77e405127e09b49c,dev,5,0.6,0.6,3409,996,280,api,4620.501147999676,6.439386999772978,113.38600599992787,1147,What are some alternatives to Intuit's Pay Trust service for online bill viewing and payment?
+n5,q_dc0daa63c6ad372c,dev,5,0.0,0.0,1175,398,214,api,3475.1332519990683,5.0097839994123206,58.35817099978158,946,How can I use Google Finance to find financial data about LinkedIn and its stock?
+oracle,q_619ce121155f4933,dev,2,1.0,1.0,1716,491,99,api,1693.3826410004258,7.670242999665788,110.64511299991864,434,How does the global economy generate a positive return on investment?
+n5,q_01e721befe9d0dd7,dev,5,1.0,0.2,4183,1067,446,api,7457.323077000183,7.892558000094141,112.06990800019412,2065,How can I invest and save for my house down payment simultaneously?
+n20,q_de2197727d6ce8d1,dev,20,0.5,0.1,22393,5322,331,api,6010.52399999935,7.06103499942401,119.93248900034814,1409,Can I claim a tax deduction for working from home as an employee? I work there ninety percent of the time.
+n5,q_759750b5fb0e1764,dev,5,0.0,0.0,2060,577,185,api,3044.6803989998443,7.103656000253977,111.84501400020963,903,How can I avoid paying a maintenance fee when my account balance falls below the minimum requirement?
+n5,q_24c587b74c5b7c95,dev,5,0.5,0.2,6974,1675,239,api,3876.1300219994155,4.283683998437482,109.91489200023352,1101,What are some good passive income options for college students?
+n5,q_33fd7baba78a1358,dev,5,0.16666666666666666,0.2,3254,848,309,api,5078.3772689992475,5.892356999538606,116.98255300143501,1374,Why might a bank prefer a lower all cash offer over a higher offer through conventional lending?
+n20,q_ec2bf0997b0ab34b,dev,20,1.0,0.05,21634,5042,159,api,3203.214608998678,5.760706000728533,119.96140700102842,816,"For equivalent company securities, is it more advantageous to trade them in a country with dividend tax free status?"
+n1,q_b1e20f08cf71cb73,dev,1,0.0,0.0,479,201,81,api,1365.0227060006728,4.468044000532245,124.99026200021035,408,When do index funds start to lose reliability?
+n20,q_766585499ae34d13,dev,20,0.42857142857142855,0.15,21614,5001,566,api,10048.318821000066,6.526316001327359,104.57645600035903,2699,What are the ethical considerations in investment decisions?
+n1,q_766585499ae34d13,dev,1,0.14285714285714285,1.0,481,196,181,api,2963.9052439997613,6.526316001327359,104.57645600035903,882,What are the ethical considerations in investment decisions?
+n1,q_77e405127e09b49c,dev,1,0.2,1.0,1585,521,161,api,2725.034003999099,6.439386999772978,113.38600599992787,539,What are some alternatives to Intuit's Pay Trust service for online bill viewing and payment?
+n1,q_619ce121155f4933,dev,1,0.0,0.0,314,159,63,api,1067.1556670004065,7.670242999665788,110.64511299991864,311,How does the global economy generate a positive return on investment?
+n20,q_4649a82e62e04522,dev,20,1.0,0.05,19848,4946,395,api,7042.730641998787,4.534551999313408,113.17839299954358,1757,How are capital gains from selling property outside the US calculated and taxed?
+oracle,q_83436a5f06f10cb0,dev,1,1.0,1.0,903,296,56,api,985.2574930009723,6.8257940001785755,111.2436469993554,282,"What is the typical duration of a bank's ""no your customer"" KYC process?"
+oracle,q_d96b734b2bc02b5a,dev,6,1.0,1.0,1871,592,253,api,4106.690643000547,6.559960998856695,107.14420000113023,974,What are some user friendly personal finance software options available in the UK?
+oracle,q_24c587b74c5b7c95,dev,2,1.0,1.0,5257,1251,258,api,4338.689191999947,4.283683998437482,109.91489200023352,1157,What are some good passive income options for college students?
+n5,q_de2197727d6ce8d1,dev,5,0.25,0.2,5385,1466,288,api,5084.835310999551,7.06103499942401,119.93248900034814,1308,Can I claim a tax deduction for working from home as an employee? I work there ninety percent of the time.
+n20,q_827ed2ddd2313785,dev,20,0.46153846153846156,0.3,16204,3784,503,api,8876.213890000145,4.955668999173213,112.81318199871748,2165,Why does a company's stock price matter to its management team?
+n5,q_83436a5f06f10cb0,dev,5,0.0,0.0,5003,1184,66,api,1124.6970530010003,6.8257940001785755,111.2436469993554,333,"What is the typical duration of a bank's ""no your customer"" KYC process?"
+n1,q_83436a5f06f10cb0,dev,1,0.0,0.0,708,248,69,api,1279.1708589993505,6.8257940001785755,111.2436469993554,352,"What is the typical duration of a bank's ""no your customer"" KYC process?"
+oracle,q_2354f69a335b77ad,dev,4,1.0,1.0,2681,710,119,api,2052.819166001427,6.888411000545602,111.3567399988824,636,What is the best way for a beginner to learn about finance and economics?
+n5,q_7f3179f293749f08,dev,5,1.0,0.2,4936,1249,425,api,7761.968086999332,4.849728000408504,108.17077899992,1855,What are the options for real estate loans used specifically for property repairs?
+n1,q_4649a82e62e04522,dev,1,1.0,1.0,2762,790,73,api,1230.7588040002884,4.534551999313408,113.17839299954358,375,How are capital gains from selling property outside the US calculated and taxed?
+oracle,q_b1e20f08cf71cb73,dev,5,1.0,1.0,9898,2131,122,api,2431.205245999081,4.468044000532245,124.99026200021035,638,When do index funds start to lose reliability?
+n5,q_2354f69a335b77ad,dev,5,0.0,0.0,2636,783,327,api,5411.759295000593,6.888411000545602,111.3567399988824,1307,What is the best way for a beginner to learn about finance and economics?
+n20,q_3576d20498b24f50,dev,20,1.0,0.05,22390,5727,358,api,6996.227493000333,8.445829000265803,119.65084400071646,1285,"Do I need to pay taxes on self employment income as a minor in the U K, and if so how."
+oracle,q_33fd7baba78a1358,dev,6,1.0,1.0,2760,785,281,api,4967.309100000421,5.892356999538606,116.98255300143501,1200,Why might a bank prefer a lower all cash offer over a higher offer through conventional lending?
+n5,q_827ed2ddd2313785,dev,5,0.15384615384615385,0.4,2771,698,335,api,5624.653073000445,4.955668999173213,112.81318199871748,1571,Why does a company's stock price matter to its management team?
+n20,q_f1e3538e7cd880f9,dev,20,0.0,0.0,19973,4893,141,api,3290.5173620001733,8.004703000551672,116.04967699895496,751,Is it possible to achieve a positive return on an investment with a balance below the cost basis?
+oracle,q_01e721befe9d0dd7,dev,1,1.0,1.0,800,254,159,api,2676.2480560009863,7.892558000094141,112.06990800019412,804,How can I invest and save for my house down payment simultaneously?
+oracle,q_3576d20498b24f50,dev,1,1.0,1.0,1895,569,127,api,2155.1926889987953,8.445829000265803,119.65084400071646,517,"Do I need to pay taxes on self employment income as a minor in the U K, and if so how."
+n5,q_d96b734b2bc02b5a,dev,5,0.0,0.0,1395,473,244,api,4257.563148001282,6.559960998856695,107.14420000113023,1127,What are some user friendly personal finance software options available in the UK?
+n1,q_3576d20498b24f50,dev,1,1.0,1.0,1895,569,179,api,3223.1688709998707,8.445829000265803,119.65084400071646,635,"Do I need to pay taxes on self employment income as a minor in the U K, and if so how."
+n20,q_d96b734b2bc02b5a,dev,20,0.16666666666666666,0.05,10137,2621,445,api,7632.1736380014045,6.559960998856695,107.14420000113023,1886,What are some user friendly personal finance software options available in the UK?
+n20,q_619ce121155f4933,dev,20,0.0,0.0,18071,4164,324,api,5888.729141999647,7.670242999665788,110.64511299991864,1662,How does the global economy generate a positive return on investment?

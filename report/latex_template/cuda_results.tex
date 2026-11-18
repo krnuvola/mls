@@ -1,0 +1,71 @@
+\subsection{CUDA ASR Results}
+\label{sec:cuda_results}
+
+All four custom CUDA task implementations passed their
+respective correctness tests. However, numerical
+correctness did not imply end-to-end speedup.
+Table~\ref{tab:asr_ablation} reports controlled
+comparisons on the H200 MIG partition.
+
+\begin{table}[!htbp]
+\centering
+\caption{End-to-end ASR performance on H200 MIG.
+Latency is the mean of three timed runs after one
+warm-up. All configurations used the same input.}
+\label{tab:asr_ablation}
+\small
+\begin{tabular}{lrr}
+\hline
+Configuration & Latency (ms) & Peak GiB \\
+\hline
+PyTorch baseline & 1339.2 & 8.90 \\
+All custom CUDA & 5867.1 & 8.56 \\
+PyTorch GEMM & 2015.5 & 8.59 \\
+PyTorch GEMM + attention & \textbf{1296.2} & 8.90 \\
+\hline
+\end{tabular}
+\end{table}
+
+The fully custom implementation was approximately
+$4.38\times$ slower than the PyTorch baseline,
+although its measured peak GPU memory was
+0.34~GiB lower. Replacing custom GEMM with
+PyTorch's implementation reduced latency by
+3851.6~ms (65.6\% relative to the fully custom
+configuration). Replacing custom attention as
+well saved a further 719.3~ms (35.7\% relative
+to the preceding hybrid).
+
+The resulting hybrid was 3.2\% faster than the
+PyTorch-only baseline on this input. This small
+difference should not be interpreted as a
+general speedup: the experiment used one
+transcription workload and three timed runs.
+
+\paragraph{Profiling and bottleneck attribution.}
+Profiling the fully custom configuration attributed
+4966.6~ms (84.5\%) to linear operations across
+2757 calls, and 882.0~ms (15.0\%) to attention
+across 396 calls. These results agree with the
+controlled ablations: GEMM was the principal
+performance bottleneck, followed by attention.
+Kernel-launch overhead and limited reuse in
+the simple tiled implementation are plausible
+contributors, while the measurements alone do
+not isolate their individual effects.
+
+\paragraph{Tile-size sensitivity.}
+For the encoder \texttt{fc1} workload, increasing
+GEMM tile size from 8 to 32 reduced latency
+from 32.459 to 18.389~ms, a $1.77\times$
+improvement. In contrast, for \texttt{lm\_head}
+with $M=1$, tile 8 took 2.911~ms while tile 32
+took 7.141~ms. Larger square tiles waste
+threads when the output has only one row,
+illustrating why the optimal tile size depends
+on matrix shape. The final submitted GEMM
+implementation uses tile size 16.
+
+These observations motivate specialised
+implementations for different matrix shapes
+rather than relying on one fixed tile size.

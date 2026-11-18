@@ -1,0 +1,88 @@
+\subsection{RAG Results and Analysis}
+\label{sec:rag_results}
+
+\paragraph{Retrieval baseline.}
+On 125 development queries, exact dense
+retrieval achieved Recall@5 of 0.379,
+Recall@10 of 0.475, Recall@20 of 0.580,
+and Recall@100 of 0.724. MRR@10 was
+0.460 and NDCG@10 was 0.398.
+Recall increased substantially with
+retrieval depth, but higher recall alone
+did not imply better generated answers.
+
+\paragraph{Generation quality and cost.}
+Table~\ref{tab:rag_context} reports
+automated answer quality for fixed
+context sizes and the oracle condition.
+The highest observed fixed-context mean
+was 0.341 at $N=10$, but quality varied
+only modestly from $N=3$ to $N=20$.
+Increasing context from five to twenty
+documents raised prompt-token usage by
+approximately 4.1 times without a
+corresponding improvement in judged
+answer quality.
+
+\begin{table}[!htbp]
+\centering
+\caption{Automated answer quality on 125
+development queries. Values are mean
+normalised judge scores with 95\%
+confidence intervals. Oracle uses
+gold-relevant evidence (at most 10 records).}
+\label{tab:rag_context}
+\small
+\begin{tabular}{lcc}
+\hline
+Context & Mean quality & 95\% CI \\
+\hline
+$N=1$  & 0.285 & [0.231, 0.342] \\
+$N=3$  & 0.325 & [0.264, 0.387] \\
+$N=5$  & 0.330 & [0.270, 0.389] \\
+$N=10$ & 0.341 & [0.285, 0.397] \\
+$N=20$ & 0.319 & [0.265, 0.373] \\
+Oracle & 0.569 & [0.509, 0.632] \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Uncertainty and interpretation.}
+Relative to $N=5$, the paired quality
+difference was $+0.011$ for $N=10$
+(95\% CI $[-0.041,+0.062]$) and
+$-0.011$ for $N=20$
+($[-0.066,+0.043]$). Both intervals
+include zero, so the experiment does
+not establish a quality advantage for
+larger fixed contexts. The oracle
+condition scored 0.239 higher than
+$N=5$ (95\% CI $[+0.173,+0.305]$),
+indicating substantial headroom when
+gold evidence is supplied directly.
+
+\paragraph{Adaptive selection and latency.}
+Similarity-gap thresholds of 0.015
+and 0.025 selected means of 4.99 and
+10.30 documents, respectively.
+Their mean quality scores were 0.331
+and 0.320, with no established
+improvement over fixed $N=5$.
+In a separate 20-query, single-worker
+timing subset, mean generation latency
+rose from 4.53\,s at $N=5$ to
+6.08\,s at $N=20$. These results
+illustrate the cost of larger contexts,
+but the small timing subset limits
+generalisation.
+
+\paragraph{Limitations.}
+The evaluation relies on automated
+judging and one generation per
+query--condition pair. Judge variability
+and the limited development split
+make small score differences uncertain.
+The oracle comparison diagnoses an
+evidence-availability bottleneck;
+it does not isolate retrieval as the
+only source of answer errors.

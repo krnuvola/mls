@@ -1,0 +1,48 @@
+\subsection{RAG Experimental Methodology}
+\label{sec:rag_methodology}
+
+We evaluated RAG over approximately 24,000
+documents using 125 development-split queries
+and supplied query--document relevance
+judgements (qrels). For exact dense retrieval,
+we measured Recall@$k$, Precision@$k$,
+Hit@$k$, MRR@10, and NDCG@10, varying
+retrieval depth over
+$k\in\{1,2,3,5,10,20,50,100\}$.
+These metrics assess evidence retrieval rather
+than generated-answer correctness. Retrieval
+timing excludes query encoding.
+
+For generation, we compared fixed context
+sizes $N\in\{1,3,5,10,20\}$, two adaptive
+similarity-gap policies (thresholds 0.015
+and 0.025), and an oracle condition using
+gold-relevant evidence, capped at 10 records.
+The oracle is a diagnostic upper-reference
+condition, not a deployable retrieval method.
+All conditions used the same 125 queries.
+The generator was
+\texttt{EuroLLM-22B-Instruct-2512}
+through the ELM API.
+
+An automated EuroLLM-based judge scored
+correctness, grounding, and completeness
+from 0 to 4 each; the combined score was
+normalised by 12. We report mean scores,
+95\% confidence intervals, paired differences,
+and context-token costs. A separate
+20-query, single-worker timing subset was
+used for latency comparisons to reduce
+concurrency-related confounding.
+
+Each query--condition pair was evaluated
+with one generation and one judgement.
+A separate 40-query repeat regenerated
+and rejudged answers for the five-document
+condition; identical answers were not
+independently rejudged. Automated judgements,
+finite query coverage, and judge variability
+limit the strength of small quality
+differences. The earlier 30-query GPT-4.1
+pilot used a different evaluation setup
+and is not pooled with this study.

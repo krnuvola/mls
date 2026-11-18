@@ -1,0 +1,54 @@
+\subsection{Retrieval-Augmented Generation Architecture}
+
+Our retrieval-augmented generation (RAG) pipeline combines
+automatic speech recognition (ASR), dense retrieval, and
+evidence-conditioned answer generation. Given an audio query,
+the ASR component first produces a transcript, which is
+encoded into a dense query representation. The retriever
+identifies relevant corpus records, and the generator
+produces an answer conditioned on the selected evidence.
+
+\paragraph{Exact dense retrieval.}
+We use precomputed, L2-normalised corpus embeddings and
+an exact dense retriever. For a query embedding
+$\mathbf{q}$ and corpus embedding $\mathbf{d}_i$,
+cosine similarity is computed as
+\begin{equation}
+s_i =
+\frac{\mathbf{q}^{\top}\mathbf{d}_i}
+{\|\mathbf{q}\|_2\|\mathbf{d}_i\|_2}.
+\end{equation}
+Because corpus embeddings are already normalised and
+query embeddings are normalised at retrieval time,
+ranking reduces to a matrix--vector multiplication.
+The implementation selects the highest-scoring $K$
+records using partial sorting and orders the selected
+records by descending similarity.
+
+This exact-search baseline avoids approximation errors
+introduced by an approximate nearest-neighbour index,
+although retrieval requires computing similarities
+against the corpus embeddings.
+
+\paragraph{Context construction and generation.}
+The context builder retrieves the text corresponding
+to the selected record identifiers and concatenates
+the documents into a numbered evidence block.
+The resulting prompt contains the transcribed question,
+retrieved evidence, and an instruction to acknowledge
+insufficient evidence rather than invent an answer.
+
+We distinguish the retrieval depth $K$ from the number
+of documents included in the generation context, $N$,
+where $1 \leq N \leq K$. This separation allows us
+to study the quality--cost trade-off of providing
+additional evidence while holding the retrieval
+candidate set fixed.
+
+\paragraph{Instrumentation.}
+The pipeline records ASR, query embedding, retrieval,
+generation, and end-to-end latencies. The generator
+interface additionally exposes token-usage information
+when returned by the underlying model service.
+These measurements support analysis of retrieval and
+generation costs alongside answer quality.

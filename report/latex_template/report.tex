@@ -1,0 +1,159 @@
+\documentclass{article}
+
+% ============================================================
+% INFR11269 Machine Learning Systems — Coursework Report
+% Academic year 2026/27
+%
+% This coursework uses the official ICLR 2027 LaTeX style.
+%
+% IMPORTANT FORMAT RULES
+% - Do not edit iclr2027_conference.sty.
+% - Do not change page geometry, text width/height, base font size,
+%   or line spacing.
+% - Do not enable \iclrfinalcopy.
+% - Normal content packages are fine if they do not alter the report format.
+%
+% Main-body page limit: six pages.
+% References and Appendix do NOT count toward the main-body page limit.
+% Reviewers are not obliged to read Appendix at all. Please put your main content
+% in the main body.
+% 
+% AI policy:
+% Academic integrity is an underlying principle of research and academic practice.
+% All submitted work is expected to be your own, including any material you have
+% generated yourself with the assistance of AI tools such as ELM, ChatGPT,
+% Bing Chat, Claude, Google Gemini, or any other automated assistance.
+% For all such material you must make prominent explicit acknowledgement and
+% explain clearly what you have done in the AI declaration section.
+% This includes using AI to directly generate text, code, figures or similar
+% or to complete other tasks. In all cases, you remain entirely responsible
+% for the material you produce.
+% ============================================================
+
+\usepackage{iclr2027_conference,times}
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% The official ICLR archive includes math_commands.tex. It is optional:
+\input{math_commands.tex}
+
+\title{End-to-End Efficiency and Quality Trade-offs in CUDA-Accelerated Speech Recognition and Retrieval-Augmented Generation}
+
+% Keep this line unchanged.
+\author{Anonymous coursework submission}
+
+% Keep this COMMENTED OUT.
+% Review mode is part of the coursework format and is checked automatically.
+% \iclrfinalcopy
+
+\begin{document}
+
+\maketitle
+
+% Course-specific template fingerprint. Keep this line unchanged.
+\lhead{Under review as a report for UoE 26/27 Sem1 INFR11269: Machine Learning Systems}
+
+% Keep this COMMENTED OUT.
+% \begin{abstract}
+% \end{abstract}
+
+% ============================================================
+% REPORT CONTENT GUIDANCE
+
+% The structure below is RECOMMENDED, not mandatory.
+% You may rename, merge, split, or reorder sections if another structure
+% better communicates your investigation.
+
+% Regardless of section titles, the report should make it easy to find:
+%   1. the problem, motivation, and relevant system context;
+%   2. the supplied baseline and your substantive technical work;
+%   3. experimental methodology, metrics, and controlled comparisons;
+%   4. results covering task/system quality AND relevant system cost;
+%   5. analysis of why the results occur, limitations, and conclusions.
+% Well organized report would result in better scores.
+
+% Depth is preferred over implementing many unrelated features.
+% ============================================================
+
+\input{introduction.tex}
+
+\section{System and Technical Approach}
+\label{sec:approach}
+
+\input{cuda_approach.tex}
+\input{rag_approach.tex}
+
+\section{Experimental Methodology}
+\label{sec:methodology}
+
+\input{cuda_methodology.tex}
+\input{rag_methodology.tex}
+
+\section{Results and Analysis}
+\label{sec:results}
+
+\input{cuda_results.tex}
+\input{rag_results.tex}
+
+\input{asr_answers_main.tex}
+
+\section{Discussion and Conclusion}
+\label{sec:conclusion}
+
+\input{discussion.tex}
+
+% References are excluded from the main-body page limit.
+\bibliography{references}
+\bibliographystyle{iclr2027_conference}
+
+% Put your Appendix here if needed. Comment out if you don't need it.
+\appendix
+\input{asr_questions.tex}
+
+% Keep this line unchanged.
+\newpage
+
+% Academic integrity is an underlying principle of research and academic practice.
+% All submitted work is expected to be your own, including any material you have
+% generated yourself with the assistance of AI tools such as ELM, ChatGPT,
+% Bing Chat, Claude, Google Gemini, or any other automated assistance.
+% For all such material you must make prominent explicit acknowledgement and
+% explain clearly what you have done in this section.
+% This includes using AI to directly generate text, code, figures or similar
+% or to complete other tasks. In all cases, you remain entirely responsible
+% for the material you produce.
+\section*{AI declaration}
+We used generative AI tools, including ChatGPT, to assist with
+understanding technical concepts, discussing implementation and
+debugging approaches, interpreting experimental results, and
+drafting and refining sections of the report. AI assistance
+also contributed to code-development guidance and LaTeX
+documentation.
+
+We reviewed AI-generated suggestions against the project
+implementation and available experimental evidence. The
+group remains responsible for the submitted code, results,
+analysis, and written report.
+
+% Please put the information of your group here without changing the format.
+\section*{Group information}
+Group ID: MLS-0122
+
+Information of group member A:
+\begin{itemize}
+    \item Name: Megha Rajesh Kandangath
+    \item UUN: s3029898
+\end{itemize}
+
+Information of group member B:
+\begin{itemize}
+    \item Name: Shalini Sharad Sawant
+    \item UUN: s2983823
+\end{itemize}
+
+\end{document}
