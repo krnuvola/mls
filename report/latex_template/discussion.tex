@@ -10,36 +10,26 @@ single kernel configuration is poorly suited to
 both large encoder matrices and the one-row
 \texttt{lm\_head} workload.
 
-For RAG, increasing generation context from five
-to twenty documents raised prompt-token usage
-by approximately 4.1 times without an established
-improvement in judged answer quality. Although
-ten documents achieved the highest observed
-fixed-context mean, paired confidence intervals
-included zero for comparisons against five and
-twenty documents. Thus, the study does not
-establish an optimal fixed context size.
-Adaptive similarity-gap policies increased
-context precision but did not demonstrate
-higher judged answer quality. The substantially
-higher oracle score suggests that access to
-relevant evidence is an important limitation,
-although generation and judging errors may
-also contribute.
+For RAG, more retrieval recall need not produce
+better answers: recall records evidence coverage,
+not whether the context is concise or coherent.
+Additional documents can introduce irrelevant
+evidence or dilute useful material, while the
+generator may still misread, omit, or fail to
+combine relevant facts. The oracle result is
+consistent with evidence availability mattering,
+but its context is not matched in document count
+or token length and does not isolate retrieval.
 
 These conclusions are bounded by the experimental
 settings. ASR timings used a single input on an
 H200 MIG partition, with limited repeated runs;
 the hybrid's small measured advantage over
-PyTorch requires replication. The RAG study
-used 125 development queries, one generation
-per query--condition pair and an automated
-judge. Small quality differences remain
-sensitive to judge variability, and the
-single-worker latency comparison covered
-only 20 queries. The RTX 2080 Ti experiments
-conducted separately are not directly
-comparable to H200 MIG timings.
+PyTorch requires replication. RAG used 125
+development queries and an automated judge;
+its latency subset covered 20 queries. The
+RTX 2080 Ti experiments conducted separately
+are not directly comparable to H200 MIG timings.
 
 Future work would use shape-specialised GEMM
 kernels, improved attention tiling and broader
