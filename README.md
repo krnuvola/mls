@@ -1,3 +1,97 @@
+# Machine Learning Systems — CUDA ASR and RAG
+
+This repository contains our Machine Learning Systems coursework,
+covering custom CUDA kernels for automatic speech recognition (ASR)
+and experiments on retrieval-augmented generation (RAG).
+
+## Project components
+
+### CUDA-accelerated ASR
+
+The `hw1-asr/` directory contains custom CUDA implementations for:
+
+- Rotary positional embeddings (RoPE)
+- Reduction operations
+- Tiled general matrix multiplication (GEMM)
+- Attention
+
+The implementation includes standalone correctness tests, an ASR
+inference benchmark, and support for selecting CUDA or PyTorch
+implementations for different operation groups.
+
+### Retrieval-augmented generation
+
+The `rag/` directory contains a pipeline for:
+
+- Audio-query transcription
+- Text encoding and document retrieval
+- Context construction
+- Answer generation
+- Retrieval and answer-quality evaluation
+
+Experiments investigate retrieval depth, generation context size,
+answer quality, latency, and computational cost.
+
+## Repository guide
+
+| Path | Contents |
+|---|---|
+| `hw1-asr/` | CUDA implementations, tests, ASR benchmark |
+| `rag/` | RAG implementation, evaluation tools, experiments |
+| `experiments/task3/` | GEMM tile-size comparison |
+| `experiments/asr/` | ASR benchmarks, ablations and profiling |
+| `experiments/rag/` | RAG experimental outputs and analysis |
+| `docs/REPRODUCIBILITY.md` | Recorded configurations, results and limitations |
+| `report/` | Coursework report sources and template |
+| `cuda-tutorial/` | Course-provided CUDA learning exercises |
+
+## Key experimental findings
+
+### ASR
+
+On an NVIDIA H200 MIG 1g.18gb GPU, the recorded mean
+transcription latencies were:
+
+| Configuration | Mean latency |
+|---|---:|
+| PyTorch baseline | 1339.2 ms |
+| CUDA RoPE/reductions, PyTorch GEMM/attention | 1296.2 ms |
+| PyTorch GEMM, CUDA attention | 2015.5 ms |
+| All custom CUDA | 5867.1 ms |
+
+All four configurations produced the expected transcription.
+
+Profiling identified custom linear operations as the dominant
+bottleneck in the all-CUDA configuration.
+
+### RAG
+
+A 30-query practice-set study compared generation context sizes
+N=3, 5, 10 and 20 with retrieval depth K=20.
+
+The highest observed mean answer-quality score was 0.6944 at
+N=10. Increasing context to N=20 increased prompt-token usage
+without improving mean quality in this study.
+
+These comparisons are exploratory; they do not establish
+statistically significant differences.
+
+## Reproducing the work
+
+Start with:
+
+1. `hw1-asr/README.md` for CUDA compilation, testing and ASR execution.
+2. `rag/README.md` for RAG dependencies, assets and execution.
+3. `docs/REPRODUCIBILITY.md` for recorded experiments, results,
+   limitations and evidence locations.
+
+Large datasets, pretrained model weights and generated caches
+are not included in the supplementary source-code package.
+
+---
+
+## Original course instructions
+
 # EDIN MLS 2026 Autumn
 
 Welcome to the Machine Learning Systems course at the University of Edinburgh (Autumn 2026). This repository holds the course's code. The first part is the CUDA C++ examples from the lecture *GPU Architecture and CUDA Programming*. Every example is the code shown on the slides, as a complete program you can build and run on the teaching cluster.

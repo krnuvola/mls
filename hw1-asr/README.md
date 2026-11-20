@@ -1,3 +1,20 @@
+## Our implementation and experimental evidence
+
+This directory contains the custom CUDA ASR implementations and tests.
+
+- Kernel correctness and GEMM tile-size results:
+  [experiments/task3](../experiments/task3/)
+- End-to-end ASR benchmarks, ablations and profiling:
+  [experiments/asr](../experiments/asr/)
+- Experimental setup, recorded results and limitations:
+  [Reproducibility documentation](../docs/REPRODUCIBILITY.md)
+
+The recorded all-CUDA configuration passed transcription correctness
+checks but was slower than the PyTorch baseline. See the profiling
+results for the main bottlenecks.
+
+---
+
 # Homework 1: speech recognition on your own CUDA kernels
 
 In this homework you write the GPU kernels that a real speech recognition model runs on. The model is GLM-ASR-Nano, a network with about 2.3 billion parameters. It listens to a 3.5-second recording (`test_audio.wav`) and writes down what was said:

@@ -32,3 +32,6 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+
+# Generated RAG judge-response caches
+experiments/rag/**/judge_cache.jsonl

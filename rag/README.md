@@ -1,3 +1,19 @@
+## Our RAG implementation and experimental evidence
+
+This directory contains the audio-query RAG pipeline and evaluation tools.
+
+- Retrieval and development-set experiments:
+  [rag/results](results/)
+- Practice-set context-size study:
+  [experiments/rag](../experiments/rag/)
+- Experimental setup, recorded results and limitations:
+  [Reproducibility documentation](../docs/REPRODUCIBILITY.md)
+
+The practice-set study compares context sizes N=3, 5, 10 and 20
+using the same 30 queries and retrieval depth K=20.
+
+---
+
 # RAG: answering audio queries with retrieved evidence
 
 This part of the coursework connects your ASR system to a document corpus and
